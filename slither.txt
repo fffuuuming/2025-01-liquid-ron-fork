@@ -1,0 +1,198 @@
+INFO:Detectors:
+LiquidRon.redeem(uint256) (src/LiquidRon.sol#362-375) uses arbitrary from in transferFrom: IERC20(asset()).transferFrom(escrow,address(this),assets) (src/LiquidRon.sol#372)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#arbitrary-from-in-transferfrom
+INFO:Detectors:
+LiquidRon._checkUserCanReceiveRon(address) (src/LiquidRon.sol#429-432) sends eth to arbitrary user
+	Dangerous calls:
+	- (success,None) = address(_user).call{value: 0}() (src/LiquidRon.sol#430)
+RonHelper._depositRONTo(address,uint256) (src/RonHelper.sol#30-33) sends eth to arbitrary user
+	Dangerous calls:
+	- IWRON(wron).deposit{value: amount}() (src/RonHelper.sol#31)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#functions-that-send-ether-to-arbitrary-destinations
+INFO:Detectors:
+Reentrancy in LiquidRon.requestWithdrawal(uint256) (src/LiquidRon.sol#348-357):
+	External calls:
+	- _checkUserCanReceiveRon(msg.sender) (src/LiquidRon.sol#352)
+		- (success,None) = address(_user).call{value: 0}() (src/LiquidRon.sol#430)
+	State variables written after the call(s):
+	- request.shares += _shares (src/LiquidRon.sol#353)
+	LiquidRon.withdrawalRequestsPerEpoch (src/LiquidRon.sol#54) can be used in cross function reentrancies:
+	- LiquidRon.redeem(uint256) (src/LiquidRon.sol#362-375)
+	- LiquidRon.requestWithdrawal(uint256) (src/LiquidRon.sol#348-357)
+	- LiquidRon.withdrawalRequestsPerEpoch (src/LiquidRon.sol#54)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities
+INFO:Detectors:
+LiquidRon.redeem(uint256) (src/LiquidRon.sol#362-375) ignores return value by IERC20(asset()).transferFrom(escrow,address(this),assets) (src/LiquidRon.sol#372)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unchecked-transfer
+INFO:Detectors:
+IWRON (src/RonHelper.sol#10-14) has incorrect ERC20 function interface:IWRON.transfer(address,uint256) (src/RonHelper.sol#13)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-erc20-interface
+INFO:Detectors:
+Escrow.constructor(address) (src/Escrow.sol#23-26) ignores return value by IERC20(_token).approve(msg.sender,type()(uint256).max) (src/Escrow.sol#25)
+LiquidRon.constructor(address,address,uint256,address,string,string) (src/LiquidRon.sol#74-87) ignores return value by IERC20(_wron).approve(address(this),type()(uint256).max) (src/LiquidRon.sol#86)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+INFO:Detectors:
+LiquidRon.setOperatorFee(uint256) (src/LiquidRon.sol#110-113) should emit an event for: 
+	- operatorFee = _fee (src/LiquidRon.sol#112) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic
+INFO:Detectors:
+LiquidProxy.constructor(address,address,address)._vault (src/LiquidProxy.sol#23) lacks a zero-check on :
+		- vault = _vault (src/LiquidProxy.sol#24)
+LiquidProxy.constructor(address,address,address)._roninStaking (src/LiquidProxy.sol#23) lacks a zero-check on :
+		- roninStaking = _roninStaking (src/LiquidProxy.sol#25)
+LiquidRon.constructor(address,address,uint256,address,string,string)._roninStaking (src/LiquidRon.sol#75) lacks a zero-check on :
+		- roninStaking = _roninStaking (src/LiquidRon.sol#82)
+LiquidRon.constructor(address,address,uint256,address,string,string)._wron (src/LiquidRon.sol#76) lacks a zero-check on :
+		- escrow = address(new Escrow(_wron)) (src/LiquidRon.sol#83)
+LiquidRon.constructor(address,address,uint256,address,string,string)._feeRecipient (src/LiquidRon.sol#78) lacks a zero-check on :
+		- feeRecipient = _feeRecipient (src/LiquidRon.sol#85)
+LiquidRon.updateFeeRecipient(address)._feeRecipient (src/LiquidRon.sol#97) lacks a zero-check on :
+		- feeRecipient = _feeRecipient (src/LiquidRon.sol#98)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+INFO:Detectors:
+LiquidProxy.harvest(address[]) (src/LiquidProxy.sol#37-44) has external calls inside a loop: IRoninValidator(roninStaking).claimRewards(_consensusAddrs) (src/LiquidProxy.sol#39)
+LiquidProxy.delegateAmount(uint256[],address[]) (src/LiquidProxy.sol#61-65) has external calls inside a loop: IRoninValidator(roninStaking).delegate{value: _amounts[i]}(_consensusAddrs[i]) (src/LiquidProxy.sol#63)
+LiquidProxy.redelegateAmount(uint256[],address[],address[]) (src/LiquidProxy.sol#71-79) has external calls inside a loop: IRoninValidator(roninStaking).redelegate(_consensusAddrsSrc[i],_consensusAddrsDst[i],_amounts[i]) (src/LiquidProxy.sol#77)
+LiquidRon.pruneValidatorList() (src/LiquidRon.sol#214-236) has external calls inside a loop: rewards[j] = IRoninValidator(roninStaking).getReward(vali,proxies[j]) (src/LiquidRon.sol#224)
+LiquidRon.pruneValidatorList() (src/LiquidRon.sol#214-236) has external calls inside a loop: stakingTotals = IRoninValidator(roninStaking).getManyStakingAmounts(valis,proxies) (src/LiquidRon.sol#227)
+LiquidRon._getTotalStakedInProxy(uint256,address[]) (src/LiquidRon.sol#400-412) has external calls inside a loop: stakedAmounts = IRoninValidator(roninStaking).getManyStakingAmounts(_consensusAddrs,users) (src/LiquidRon.sol#409)
+LiquidRon._getTotalRewardsInProxy(uint256,address[]) (src/LiquidRon.sol#384-394) has external calls inside a loop: rewards = IRoninValidator(roninStaking).getRewards(user,_consensusAddrs) (src/LiquidRon.sol#389)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+INFO:Detectors:
+Reentrancy in LiquidRon.harvest(uint256,address[]) (src/LiquidRon.sol#135-139):
+	External calls:
+	- harvestedAmount = ILiquidProxy(stakingProxies[_proxyIndex]).harvest(_consensusAddrs) (src/LiquidRon.sol#136)
+	State variables written after the call(s):
+	- operatorFeeAmount += (harvestedAmount * operatorFee) / BIPS (src/LiquidRon.sol#137)
+Reentrancy in LiquidRon.harvestAndDelegateRewards(uint256,address[],address) (src/LiquidRon.sol#145-157):
+	External calls:
+	- harvestedAmount = ILiquidProxy(stakingProxies[_proxyIndex]).harvestAndDelegateRewards(_consensusAddrs,_consensusAddrDst) (src/LiquidRon.sol#151-154)
+	State variables written after the call(s):
+	- operatorFeeAmount += (harvestedAmount * operatorFee) / BIPS (src/LiquidRon.sol#155)
+Reentrancy in LiquidRon.redelegateAmount(uint256,uint256[],address[],address[]) (src/LiquidRon.sol#186-198):
+	External calls:
+	- ILiquidProxy(stakingProxies[_proxyIndex]).redelegateAmount(_amounts,_consensusAddrsSrc,_consensusAddrsDst) (src/LiquidRon.sol#192)
+	State variables written after the call(s):
+	- _tryPushValidator(_consensusAddrsDst[i]) (src/LiquidRon.sol#196)
+		- validatorIndex[_validator] = validatorCount ++ (src/ValidatorTracker.sol#39)
+	- _tryPushValidator(_consensusAddrsDst[i]) (src/LiquidRon.sol#196)
+		- validatorIndex[_validator] = validatorCount ++ (src/ValidatorTracker.sol#39)
+	- _tryPushValidator(_consensusAddrsDst[i]) (src/LiquidRon.sol#196)
+		- validatorStakeActive[_validator] = true (src/ValidatorTracker.sol#38)
+	- _tryPushValidator(_consensusAddrsDst[i]) (src/LiquidRon.sol#196)
+		- validators.push(_validator) (src/ValidatorTracker.sol#40)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+INFO:Detectors:
+Reentrancy in LiquidRon.harvest(uint256,address[]) (src/LiquidRon.sol#135-139):
+	External calls:
+	- harvestedAmount = ILiquidProxy(stakingProxies[_proxyIndex]).harvest(_consensusAddrs) (src/LiquidRon.sol#136)
+	Event emitted after the call(s):
+	- Harvest(_proxyIndex,harvestedAmount) (src/LiquidRon.sol#138)
+Reentrancy in LiquidRon.harvestAndDelegateRewards(uint256,address[],address) (src/LiquidRon.sol#145-157):
+	External calls:
+	- harvestedAmount = ILiquidProxy(stakingProxies[_proxyIndex]).harvestAndDelegateRewards(_consensusAddrs,_consensusAddrDst) (src/LiquidRon.sol#151-154)
+	Event emitted after the call(s):
+	- Harvest(_proxyIndex,harvestedAmount) (src/LiquidRon.sol#156)
+Reentrancy in LiquidRon.redeem(uint256,address,address) (src/LiquidRon.sol#316-325):
+	External calls:
+	- _withdrawRONTo(_receiver,assets) (src/LiquidRon.sol#322)
+		- IWRON(wron).withdraw(amount) (src/RonHelper.sol#39)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	External calls sending eth:
+	- _withdrawRONTo(_receiver,assets) (src/LiquidRon.sol#322)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	Event emitted after the call(s):
+	- Withdraw(msg.sender,_receiver,_owner,assets,_shares) (src/LiquidRon.sol#323)
+Reentrancy in LiquidRon.redeem(uint256) (src/LiquidRon.sol#362-375):
+	External calls:
+	- IERC20(asset()).transferFrom(escrow,address(this),assets) (src/LiquidRon.sol#372)
+	- _withdrawRONTo(msg.sender,assets) (src/LiquidRon.sol#373)
+		- IWRON(wron).withdraw(amount) (src/RonHelper.sol#39)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	External calls sending eth:
+	- _withdrawRONTo(msg.sender,assets) (src/LiquidRon.sol#373)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	Event emitted after the call(s):
+	- WithdrawalClaimed(msg.sender,epoch,shares,assets) (src/LiquidRon.sol#374)
+Reentrancy in LiquidRon.withdraw(uint256,address,address) (src/LiquidRon.sol#303-312):
+	External calls:
+	- _withdrawRONTo(_receiver,_assets) (src/LiquidRon.sol#309)
+		- IWRON(wron).withdraw(amount) (src/RonHelper.sol#39)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	External calls sending eth:
+	- _withdrawRONTo(_receiver,_assets) (src/LiquidRon.sol#309)
+		- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+	Event emitted after the call(s):
+	- Withdraw(msg.sender,_receiver,_owner,_assets,shares) (src/LiquidRon.sol#310)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+INFO:Detectors:
+ValidatorTracker._tryPushValidator(address) (src/ValidatorTracker.sol#36-42) has costly operations inside a loop:
+	- validatorIndex[_validator] = validatorCount ++ (src/ValidatorTracker.sol#39)
+ValidatorTracker._removeValidator(address) (src/ValidatorTracker.sol#45-54) has costly operations inside a loop:
+	- lastValidator = validators[-- validatorCount] (src/ValidatorTracker.sol#48)
+ValidatorTracker._removeValidator(address) (src/ValidatorTracker.sol#45-54) has costly operations inside a loop:
+	- validators.pop() (src/ValidatorTracker.sol#52)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#costly-operations-inside-a-loop
+INFO:Detectors:
+Low level call in LiquidRon._checkUserCanReceiveRon(address) (src/LiquidRon.sol#429-432):
+	- (success,None) = address(_user).call{value: 0}() (src/LiquidRon.sol#430)
+Low level call in RonHelper._withdrawRONTo(address,uint256) (src/RonHelper.sol#38-42):
+	- (success,None) = to.call{value: amount}() (src/RonHelper.sol#40)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+INFO:Detectors:
+Escrow (src/Escrow.sol#18-37) should inherit from IVault (src/Escrow.sol#12-14)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-inheritance
+INFO:Detectors:
+Parameter Escrow.deposit(uint256,address)._amount (src/Escrow.sol#33) is not in mixedCase
+Parameter Escrow.deposit(uint256,address)._receiver (src/Escrow.sol#33) is not in mixedCase
+Parameter LiquidProxy.harvest(address[])._consensusAddrs (src/LiquidProxy.sol#37) is not in mixedCase
+Parameter LiquidProxy.harvestAndDelegateRewards(address[],address)._consensusAddrs (src/LiquidProxy.sol#51) is not in mixedCase
+Parameter LiquidProxy.harvestAndDelegateRewards(address[],address)._consensusAddrDst (src/LiquidProxy.sol#52) is not in mixedCase
+Parameter LiquidProxy.delegateAmount(uint256[],address[])._amounts (src/LiquidProxy.sol#61) is not in mixedCase
+Parameter LiquidProxy.delegateAmount(uint256[],address[])._consensusAddrs (src/LiquidProxy.sol#61) is not in mixedCase
+Parameter LiquidProxy.redelegateAmount(uint256[],address[],address[])._amounts (src/LiquidProxy.sol#72) is not in mixedCase
+Parameter LiquidProxy.redelegateAmount(uint256[],address[],address[])._consensusAddrsSrc (src/LiquidProxy.sol#73) is not in mixedCase
+Parameter LiquidProxy.redelegateAmount(uint256[],address[],address[])._consensusAddrsDst (src/LiquidProxy.sol#74) is not in mixedCase
+Parameter LiquidProxy.undelegateAmount(uint256[],address[])._amounts (src/LiquidProxy.sol#84) is not in mixedCase
+Parameter LiquidProxy.undelegateAmount(uint256[],address[])._consensusAddrs (src/LiquidProxy.sol#84) is not in mixedCase
+Parameter LiquidRon.updateFeeRecipient(address)._feeRecipient (src/LiquidRon.sol#97) is not in mixedCase
+Parameter LiquidRon.updateOperator(address,bool)._operator (src/LiquidRon.sol#104) is not in mixedCase
+Parameter LiquidRon.updateOperator(address,bool)._value (src/LiquidRon.sol#104) is not in mixedCase
+Parameter LiquidRon.setOperatorFee(uint256)._fee (src/LiquidRon.sol#110) is not in mixedCase
+Parameter LiquidRon.harvest(uint256,address[])._proxyIndex (src/LiquidRon.sol#135) is not in mixedCase
+Parameter LiquidRon.harvest(uint256,address[])._consensusAddrs (src/LiquidRon.sol#135) is not in mixedCase
+Parameter LiquidRon.harvestAndDelegateRewards(uint256,address[],address)._proxyIndex (src/LiquidRon.sol#146) is not in mixedCase
+Parameter LiquidRon.harvestAndDelegateRewards(uint256,address[],address)._consensusAddrs (src/LiquidRon.sol#147) is not in mixedCase
+Parameter LiquidRon.harvestAndDelegateRewards(uint256,address[],address)._consensusAddrDst (src/LiquidRon.sol#148) is not in mixedCase
+Parameter LiquidRon.delegateAmount(uint256,uint256[],address[])._proxyIndex (src/LiquidRon.sol#164) is not in mixedCase
+Parameter LiquidRon.delegateAmount(uint256,uint256[],address[])._amounts (src/LiquidRon.sol#165) is not in mixedCase
+Parameter LiquidRon.delegateAmount(uint256,uint256[],address[])._consensusAddrs (src/LiquidRon.sol#166) is not in mixedCase
+Parameter LiquidRon.redelegateAmount(uint256,uint256[],address[],address[])._proxyIndex (src/LiquidRon.sol#187) is not in mixedCase
+Parameter LiquidRon.redelegateAmount(uint256,uint256[],address[],address[])._amounts (src/LiquidRon.sol#188) is not in mixedCase
+Parameter LiquidRon.redelegateAmount(uint256,uint256[],address[],address[])._consensusAddrsSrc (src/LiquidRon.sol#189) is not in mixedCase
+Parameter LiquidRon.redelegateAmount(uint256,uint256[],address[],address[])._consensusAddrsDst (src/LiquidRon.sol#190) is not in mixedCase
+Parameter LiquidRon.undelegateAmount(uint256,uint256[],address[])._proxyIndex (src/LiquidRon.sol#205) is not in mixedCase
+Parameter LiquidRon.undelegateAmount(uint256,uint256[],address[])._amounts (src/LiquidRon.sol#206) is not in mixedCase
+Parameter LiquidRon.undelegateAmount(uint256,uint256[],address[])._consensusAddrs (src/LiquidRon.sol#207) is not in mixedCase
+Parameter LiquidRon.withdraw(uint256,address,address)._assets (src/LiquidRon.sol#304) is not in mixedCase
+Parameter LiquidRon.withdraw(uint256,address,address)._receiver (src/LiquidRon.sol#305) is not in mixedCase
+Parameter LiquidRon.withdraw(uint256,address,address)._owner (src/LiquidRon.sol#306) is not in mixedCase
+Parameter LiquidRon.redeem(uint256,address,address)._shares (src/LiquidRon.sol#317) is not in mixedCase
+Parameter LiquidRon.redeem(uint256,address,address)._receiver (src/LiquidRon.sol#318) is not in mixedCase
+Parameter LiquidRon.redeem(uint256,address,address)._owner (src/LiquidRon.sol#319) is not in mixedCase
+Parameter LiquidRon.deposit(uint256,address)._assets (src/LiquidRon.sol#328) is not in mixedCase
+Parameter LiquidRon.deposit(uint256,address)._receiver (src/LiquidRon.sol#328) is not in mixedCase
+Parameter LiquidRon.mint(uint256,address)._assets (src/LiquidRon.sol#333) is not in mixedCase
+Parameter LiquidRon.mint(uint256,address)._receiver (src/LiquidRon.sol#333) is not in mixedCase
+Parameter LiquidRon.requestWithdrawal(uint256)._shares (src/LiquidRon.sol#348) is not in mixedCase
+Parameter LiquidRon.redeem(uint256)._epoch (src/LiquidRon.sol#362) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+INFO:Detectors:
+Escrow._vault (src/Escrow.sol#21) should be immutable 
+LiquidProxy.roninStaking (src/LiquidProxy.sol#21) should be immutable 
+LiquidProxy.vault (src/LiquidProxy.sol#20) should be immutable 
+LiquidRon.escrow (src/LiquidRon.sol#61) should be immutable 
+LiquidRon.roninStaking (src/LiquidRon.sol#62) should be immutable 
+RonHelper.wron (src/RonHelper.sol#21) should be immutable 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#state-variables-that-could-be-declared-immutable
+INFO:Slither:. analyzed (28 contracts with 93 detectors), 85 result(s) found
