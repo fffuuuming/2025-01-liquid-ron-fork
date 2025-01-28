@@ -45,6 +45,7 @@ Liquid RON stakes and harvests rewards automatically, auto compounding your rewa
 - **Previous audits:** None
 - **Documentation:** <https://github.com/OwlOfMoistness/liquid_ron/blob/main/README.md>
 - **X/Twitter:** <https://x.com/OwlOfMoistness>
+- **Code walk-through:** <https://youtu.be/S7d21f7jTNQ>
 
 ---
 
