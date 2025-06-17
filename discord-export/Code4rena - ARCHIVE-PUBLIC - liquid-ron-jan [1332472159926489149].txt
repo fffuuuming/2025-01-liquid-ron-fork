@@ -1,0 +1,1974 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-PUBLIC / liquid-ron-jan
+==============================================================
+
+[01/24/2025 22:19] liveactionllamac4 (pinned)
+👋 Hello and welcome to the $40,000 Liquid Ron audit channel!
+
+📆 Audit opens Tuesday, 28 January 2025 20:00 (20:00 UTC) and runs through Tuesday, 04 February 2025 20:00 (20:00 UTC) (7 days).
+
+Please give a warm welcome to the Liquid Ron team, particularly @Owl, who will be available for questions either here in the channel or via a PRIVATE thread in the GMT timezone. 
+
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try, by tagging `@Docs Wolf` in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://github.com/code-423n4/2025-01-liquid-ron
+
+{Reactions}
+🔥 (5) 
+
+[01/24/2025 22:20] liveactionllamac4
+Pinned a message.
+
+
+[01/28/2025 20:26] kalogerone
+Does that mean only on Ronin chain? I assume so but making sure
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/image-78FDB.png
+
+{Reactions}
+PES_YesSign 
+
+[01/28/2025 20:35] george786.
+We have ronin in scope, the protocol `might` deploy it on other chains..
+
+
+[01/28/2025 20:37] owlofmoistness
+Only to be deployed on  ronin
+
+
+[01/28/2025 21:13] george786.
+Where can we get the code for ronin staking and validator contracts @Owl
+
+
+[01/28/2025 21:14] owlofmoistness (pinned)
+<https://github.com/ronin-chain/dpos-contract/tree/mainnet/contracts/ronin>
+
+
+[01/28/2025 21:17] kartoonjoy
+Pinned a message.
+
+
+[01/29/2025 02:50] saurabh_0312
+is this code base previously audited
+
+
+[01/29/2025 02:50] saurabh_0312
+there is no audit provided in c4
+
+
+[01/29/2025 06:47] unpluggedtj
+I don't think it's audited, but looks solid
+
+{Reactions}
+➕ (8) 
+
+[01/29/2025 09:02] kyosi2963
+What does “mitigation review” pot means in contest page? Who is going to make the mitigation review
+
+
+[01/29/2025 09:30] p_crypt0
+Sorry if it's an obvious question, but is there a RON.sol or WRON.sol contract?
+
+
+[01/29/2025 09:30] whoismxuse
+Hi @Owl are we supposed to consider the logic of the mock contracts in scope since they are called by  the `scope.txt` contracts ?
+
+
+[01/29/2025 09:35] pfapostol
+top 3 or 5 of this contest. Check in the docs for more info.
+
+
+[01/29/2025 09:37] pfapostol
+Ronin network for some reason does not have the code for many contracts. But as far as I understand WRON is WETH9 -like
+
+{Reactions}
+👍 
+
+[01/29/2025 09:45] owlofmoistness
+it is outside of scope, the actual code of the used for mock 
+is in the staking directory found here <https://github.com/ronin-chain/dpos-contract/tree/mainnet/contracts/ronin>
+
+{Reactions}
+🫡 
+
+[01/29/2025 09:46] owlofmoistness (pinned)
+correct, wron is a simple wrapper contract like weth9
+
+{Reactions}
+👍 (2) 
+
+[01/29/2025 10:07] p_crypt0
+Started a thread.
+
+
+[01/29/2025 10:45] 0xsorrynotsorry
+Pinned a message.
+
+
+[01/29/2025 15:11] modey__
+can we see the implementation of RoninValidators?
+
+
+[01/29/2025 15:20] 0xiehnnkta
+I think the functionality is same as of MockRonStaking.sol contract, can you cofirm it @Owl
+
+{Reactions}
+👍 
+
+[01/29/2025 15:21] owlofmoistness
+you can view it here:
+<https://app.roninchain.com/address/0x545edb750eb8769c868429be9586f5857a768758?t=contract>
+code is here is in GH link above
+
+{Reactions}
+👍 
+
+[01/29/2025 15:30] modey__
+Thank you!
+
+
+[01/29/2025 17:07] keivou
+what is a consensus address? Pardon my ignorance
+
+
+[01/29/2025 17:33] uaarrr
+validator
+
+{Reactions}
+✅ 
+
+[01/29/2025 17:35] keivou
+I figured, but wasn't certain, thanks
+
+
+[01/30/2025 10:04] owlofmoistness (pinned)
+Hey all!
+Been trying to answer all your question via private threads! Hope everything is going well for you wardens!
+
+One more public clarification worth mentionning:
+**Currently the Ronin chain is permissioned**, meaning only whitelisted addresses can deploy contracts. The liquid ron protocol will at some point deploy new contracts to function nominally. 
+**However, Ronin is going permissionless in february**
+
+**Liquid RON protocol will be deployed after this change occurs**
+
+As always, I'm here for all your questions!
+
+{Reactions}
+👍 (21) 
+
+[01/30/2025 12:25] elser17
+Hi, what is the purpose of IERC20(_wron).approve(address(this), type(uint256).max);   in LiquidRon contract's constructor?
+
+
+[01/30/2025 12:38] pfapostol
+probably a mistake
+
+
+[01/30/2025 14:47] ivanfitro
+Anyone has the roninStaking contract?
+
+
+[01/30/2025 14:59] 0xrochimaru
+https://github.com/ronin-chain/dpos-contract/tree/mainnet/contracts/ronin
+
+{Embed}
+https://github.com/ronin-chain/dpos-contract/tree/mainnet/contracts/ronin
+dpos-contract/contracts/ronin at mainnet · ronin-chain/dpos-contract
+Contribute to ronin-chain/dpos-contract development by creating an account on GitHub.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/dpos-contract-FBA6B
+
+{Reactions}
+👍 🙏 
+
+[01/30/2025 16:21] liveactionllamac4
+Pinned a message.
+
+
+[01/30/2025 19:00] unique0x0
+any solution?
+```
+Failing tests:
+Encountered 1 failing test in test/LiquidRon.operator.t.sol:LiquidRonTest
+[FAIL. Reason: unknown cheatcode with selector 0x11fb5b9c; you may have a mismatch between the `Vm` interface (likely in `forge-std`) and the `forge` version; counterexample: calldata=0xf3da729a0000000000000000000000000000000000000000000002d8e5b54be56dd31569 args=[13445781905114785846633 [1.344e22]]] test_revert_insufficient_delegate(uint88) (runs: 0, μ: 0, ~: 0)
+```
+
+
+[01/30/2025 19:01] keivou
+That happens when you have 2 versions of Vm.sol I believe
+
+
+[01/30/2025 19:03] keivou
+Which I also think happens if you installed foundry twice in different ways, like running the cargo and also the curl, do you remember doing this?
+
+
+[01/30/2025 19:07] unique0x0
+yeah I did that a long time ago but this is the first time this has occurred
+
+
+[01/30/2025 19:08] unique0x0
+I can run `cargo` command in my terminal
+
+
+[01/30/2025 19:08] keivou
+Not sure if this works but you could try finding one of the Vm.sol and deleting it, otherwise uninstall and reinstall through cargo, but it'll take a while
+
+{Reactions}
+❤️ 
+
+[01/30/2025 19:08] unique0x0
+thanks for helping
+
+{Reactions}
+👍 
+
+[01/30/2025 19:10] keivou
+Do tell me if you fix it
+
+{Reactions}
+👍 
+
+[01/30/2025 19:17] unpluggedtj
+Hi team, would like to know how long does an epoch would last.
+
+
+[01/30/2025 19:35] owlofmoistness
+10 minutes roughly
+
+{Reactions}
+👍 
+
+[01/30/2025 19:36] owlofmoistness
+200 block I believe
+
+
+[01/30/2025 20:05] unique0x0
+I fixed just by running `foundryup` command
+
+{Reactions}
+👍 
+
+[01/30/2025 20:09] keivou
+foundryup basically never solved my problems, glad that it works for you 🙂
+
+{Reactions}
+👍 
+
+[01/30/2025 20:59] unpluggedtj
+So just to be sure, is it fine to assume that `finaliseRonRewardsForEpoch` will be called roughly every 10 mins.
+
+
+[01/30/2025 21:00] owlofmoistness
+nope, `finaliseRonRewardsForEpoch` has nothing to do with the ronin staking epochs
+the vault's epochs are unique to the vault
+`finaliseRonRewardsForEpoch` will be called a couple times per weke if necessary, ideally it should be called rarely
+
+{Reactions}
+👍 (2) 
+
+[01/30/2025 21:00] unpluggedtj
+Makes sense now..
+
+
+[01/31/2025 02:04] elser17
+I do not get why Escrow contract is required for avoiding miscalculations. When somebody deposits in LiquidRon with native RON it is just wrapped into WRON and sent to the Escrow, which justs deposits on behalf of receiver. Would not this be the same as just wrapping the native RON and calling deposit(msg.value, msg.sender)?
+
+
+[01/31/2025 02:20] t0x1c.c0de
+You need to fetch the totalAssets() **before** the user deposits so that shares can be calculated for minting.
+Not using Escrow means the protocol would erroneously include the just transferred WRON balance.
+
+{Reactions}
+pepelove (3) 
+
+[01/31/2025 02:23] elser17
+Makes sense, thx
+
+
+[01/31/2025 11:23] elser17
+where can I find the implementation of delegateRewards() function in RoninStaking? I looked in all contracts from here and did not find it
+
+
+[01/31/2025 11:31] welith
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/DelegatorStaking.sol#L83
+
+{Embed}
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/DelegatorStaking.sol
+dpos-contract/contracts/ronin/staking/DelegatorStaking.sol at 348e2...
+Contribute to ronin-chain/dpos-contract development by creating an account on GitHub.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/dpos-contract-FBA6B
+
+{Reactions}
+❤️ (2) 
+
+[01/31/2025 13:49] unique0x0
+where can I find the implementation of the  `vault.deposit` that is used in escrow.sol
+```
+function deposit(uint256 _amount, address _receiver) external {
+    if (msg.sender != _vault) revert ErrNotVault();
+    IVault(payable(_vault)).deposit(_amount, _receiver);
+}```
+
+
+[01/31/2025 13:53] 0x_shahil_hussain
+vault is LiquidRon.sol
+
+{Reactions}
+❤️ 
+
+[01/31/2025 13:54] unique0x0
+thank you so much
+
+
+[01/31/2025 14:49] unique0x0
+I’m having trouble understanding this flow. Can someone explain how the process works after making a deposit into the vault (`LiquidRon`) from the `Escrow.sol` contract, and how it ultimately triggers the `MockRonStaking::getRewards` function?
+
+Here’s the flow I’m trying to follow:
+`forge test --mt test_deposit -vvvv`
+```
+[0] VM::assume(true) [staticcall]
+    │   └─ ← [Return] 
+    ├─ [2562] WrappedRon::balanceOf(LiquidRon: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a]) [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [201317] LiquidRon::deposit{value: 10584877439977330775}()
+    │   ├─ [44668] WrappedRon::deposit{value: 10584877439977330775}()
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: LiquidRon: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], value: 10584877439977330775 [1.058e19])
+    │   │   └─ ← [Stop] 
+    │   ├─ [25188] WrappedRon::transfer(Escrow: [0x4f81992FCe2E1846dD528eC0102e6eE1f61ed3e2], 10584877439977330775 [1.058e19])
+    │   │   ├─ emit Transfer(from: LiquidRon: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], to: Escrow: [0x4f81992FCe2E1846dD528eC0102e6eE1f61ed3e2], value: 10584877439977330775 [1.058e19])
+    │   │   └─ ← [Return] true
+    │   ├─ [114273] Escrow::deposit(10584877439977330775 [1.058e19], LiquidRonTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496])
+ 👉 @>>  │   │   ├─ [111351] LiquidRon::deposit(10584877439977330775 [1.058e19], LiquidRonTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496])
+  👉 @>> │   │   │   ├─ [954] MockRonStaking::getRewards(LiquidProxy: [0xCB6f5076b5bbae81D7643BfBf57897E8E3FB1db9], []) [staticcall]
+    │   │   │   │   └─ ← [Return] []
+    │   │   │   ├─ [954] MockRonStaking::getRewards(LiquidProxy: [0xA11d35fE4b9Ca9979F2FF84283a9Ce190F60Cd00], []) [staticcall]
+    │   │   │   │   └─ ← [Return] []
+    │   │   │   ├─ [954] MockRonStaking::getRewards(LiquidProxy: [0x5Fa39CD9DD20a3A77BA0CaD164bD5CF0d7bb3303], []) [staticcall]
+    │   │   │   │   └─ ← [Return] []
+```
+
+
+[01/31/2025 14:51] welith
+because of totalAssets(), as it uses getRewards, and getTotalStaked
+
+{Reactions}
+pepelove (2) 
+
+[01/31/2025 14:52] owlofmoistness
+getRewards is called when calling totalAssets
+Since to calculate how many shares to mint, we must know totalAsset count
+
+
+[01/31/2025 15:34] unique0x0
+the flow is like this am I right? 
+1-
+````LiquidRon.sol`
+function deposit() external payable whenNotPaused {
+        _depositRONTo(escrow, msg.value);
+        Escrow(escrow).deposit(msg.value, msg.sender);   <<<@ calling the escrow contract
+    }
+```
+2-Escrow.sol
+```
+  function deposit(uint256 _amount, address _receiver) external {
+        if (msg.sender != _vault) revert ErrNotVault();
+        IVault(payable(_vault)).deposit(_amount, _receiver);   >>>@ calling the LiquidRon
+    }
+```
+3-
+```LiquidRon
+    function deposit(uint256 _assets, address _receiver) public override whenNotPaused returns (uint256) {
+        return super.deposit(_assets, _receiver);  <<<@ calling the ERC4626 deposit
+    }
+```
+4-ERC4626.sol
+```
+ function deposit(uint256 assets, address receiver) public virtual returns (uint256) {
+        uint256 maxAssets = maxDeposit(receiver);
+        if (assets > maxAssets) {
+            revert ERC4626ExceededMaxDeposit(receiver, assets, maxAssets);
+        }
+
+        uint256 shares = previewDeposit(assets);
+        _deposit(_msgSender(), receiver, assets, shares);
+
+        return shares;
+    }
+```
+
+
+[01/31/2025 15:35] owlofmoistness
+correct
+
+{Reactions}
+❤️ 
+
+[01/31/2025 15:37] unique0x0
+I can't find `totalAssets()` calling in the flow
+
+
+[01/31/2025 15:37] owlofmoistness
+previewDeposit
+
+{Reactions}
+❤️ 
+
+[01/31/2025 15:42] unique0x0
+https://tenor.com/view/iceage-possum-peaceout-gif-2272177960667492692
+
+{Embed}
+https://tenor.com/view/iceage-possum-peaceout-gif-2272177960667492692
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/iceage-possum-D23F0.png
+
+{Reactions}
+pepelove 
+
+[02/01/2025 10:32] meitedaf.
+Is a mandatory POC required？for H/M
+
+
+[02/01/2025 11:27] 0x23r0
+no
+
+{Reactions}
+nice 
+
+[02/01/2025 13:30] the0x0dd
+Hi, given
+> High- or Medium-risk submissions downgraded to Low-risk (QA) will be ineligible for awards.
+Will a Medium finding downgraded from High be eligible for awards?
+
+{Reactions}
+👍 
+
+[02/01/2025 13:55] thehxnz
+What's the difference between `withdraw` and `redeem`?
+
+
+[02/01/2025 14:01] samuselderg
+Yes
+
+{Reactions}
+👍 
+
+[02/01/2025 14:52] 0xwhyzee
+Both functions return assets to user (if all checks pass)
+
+In `withdraw`, the user specifies the amount of assets to withdraw, and the function calculates the corresponding shares to burn
+
+In `redeem` the user specifies the amount of shares to burn and the function calculates the corresponding assets to return to user
+
+{Reactions}
+👌 (5) 
+
+[02/01/2025 15:25] thehxnz
+thanks!
+
+
+[02/01/2025 15:48] keivou
+Are all centralization issues invalid?
+
+
+[02/01/2025 15:49] welith
+yes
+
+
+[02/01/2025 16:01] unpluggedtj
+I have a tip for you, read and understand the ERC 4626 before diving in the codebase, would help you for not just this contest, but for future as well
+
+{Reactions}
+👍 (6) 
+
+[02/01/2025 17:28] owlofmoistness
+FYI:
+I'll be afk most of tomorrow (Sunday), i will still be able to answer in the evening  but during the day, don't expect much activity from me
+
+I am GMT based, bare that in mind
+
+Good job so far on the audit, I've been trying to answer all of you 
+
+:pepelove:
+
+{Reactions}
+👍 (9) 
+
+[02/01/2025 21:18] skid0016
+Pls where can i see the claimReward call in this line:
+```
+ IRoninValidator(roninStaking).claimRewards(_consensusAddrs);
+```
+
+
+[02/01/2025 22:25] unpluggedtj
+@Skid0016 check this repo, should have it I guess.
+
+
+[02/01/2025 22:29] skid0016
+Thanks
+
+{Reactions}
+👍 
+
+[02/02/2025 09:00] matte0xyz
+Where can we see the Wrapped RON source code?
+
+
+[02/02/2025 09:14] unique0x0
+src/mock/WrappedRon.sol
+
+{Reactions}
+❤️ 
+
+[02/02/2025 09:25] meitedaf.
+@Owl What can I do if I find a vulnerability out of scope?  Attack it?:4739_Skeletor:
+
+{Reactions}
+💀 (2) 
+
+[02/02/2025 09:26] owlofmoistness
+I can't control that, so do as you will :ultimatekekwboom: 
+or share it and be an amazing whitehat
+
+{Reactions}
+🤣 (4) 
+
+[02/02/2025 09:34] saurabh_0312
+is the _consensesaddr and validator same
+i am confused can anyone clarify.
+
+
+[02/02/2025 09:40] owlofmoistness
+yes
+
+
+[02/02/2025 09:40] saurabh_0312
+ok ok ok
+
+
+[02/02/2025 10:15] igdbase
+I can't find the  implementation for some internal function call like 
+`_claimReward` from line:
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/DelegatorStaking.sol#L179
+Where can i see it's implementaion @Owl
+
+{Embed}
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/DelegatorStaking.sol
+dpos-contract/contracts/ronin/staking/DelegatorStaking.sol at 348e2...
+Contribute to ronin-chain/dpos-contract development by creating an account on GitHub.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/dpos-contract-FBA6B
+
+
+[02/02/2025 10:17] owlofmoistness
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/RewardCalculation.sol#L156
+
+{Embed}
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/RewardCalculation.sol
+dpos-contract/contracts/ronin/staking/RewardCalculation.sol at 348e...
+Contribute to ronin-chain/dpos-contract development by creating an account on GitHub.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/dpos-contract-FBA6B
+
+
+[02/02/2025 10:18] igdbase
+Thanks
+
+
+[02/02/2025 10:36] saurabh_0312
+so 1. there are many validators in each proxy 
+or 2. there are many proxies for each validator
+which is correct'
+
+
+[02/02/2025 10:44] alekso1
+I would say 1 & 2
+
+{Reactions}
+🙂 (2) 10_10 (2) 
+
+[02/02/2025 11:42] andysakov1958
+@Owl how often is `pruneValidatorList` to be called?
+
+
+[02/02/2025 12:06] owlofmoistness
+when one or many validators can be removed from the list
+
+{Reactions}
+🤝 (2) 
+
+[02/02/2025 13:38] 0xiehnnkta
+If user deposit, then how can he claim the rewards?
+
+
+[02/02/2025 14:22] dot_cloud
+via shares
+
+
+[02/02/2025 19:33] godwinudo
+@Owl does the protocol intend to accommodate EOAs?
+
+
+[02/02/2025 20:13] unpluggedtj
+If I understand correct, do you mean users / admins / validators will be interacting to contracts via EOA? 
+Yes, you can always consider that, even consider multisigs or smart wallet contracts ( it doesn't mean these wallet contracts don't have the ability to receive native tokens, don't consider user mistakes )
+
+
+[02/02/2025 20:14] godwinudo
+Yes, that's what I mean
+
+
+[02/02/2025 22:14] owlofmoistness
+Yup 
+Anyone able to receive Ron if they are a user 
+For operator can be both eoa or contracts
+
+{Reactions}
+👍🏾 
+
+[02/03/2025 04:22] saurabh_0312
+what are the number of decimal the ron token follows??
+
+
+[02/03/2025 04:27] pabel0914
+@Owl what is the role of the operator?
+
+
+[02/03/2025 06:12] godwinudo
+Check docs
+
+
+[02/03/2025 06:14] c_moose
+https://code4rena.com/audits/2025-01-liquid-ron#:~:text=All%20trusted%20roles%20in%20the%20protocol
+
+
+[02/03/2025 09:52] owlofmoistness
+18
+
+
+[02/03/2025 10:25] alekso1
+Google is your friend guys Owl isn't an AI
+
+{Reactions}
+pepelove (4) 
+
+[02/03/2025 10:44] shibi_kishore101
+Does ronin network has public mempool like ethereum?
+
+
+[02/03/2025 10:56] kalogerone
+sponsor has said to report any frontrunning issues
+
+
+[02/03/2025 11:00] shibi_kishore101
+Thanks
+
+
+[02/03/2025 11:24] 0xmujahid002
+How can i create private thread? Cna anyone help me...
+
+
+[02/03/2025 11:31] daniel526
+- click on the Threads icon on your top-right of this channel
+- click on creat
+- give the thread a name e.g "myThread"
+- mark the checkbox
+- tag (use "@" ) the protocol dev while raising your
+
+{Reactions}
+🫡 (3) thankyou 
+
+[02/03/2025 14:08] santiellena
+@Owl Hi! Should `LiquidRon` be compliant with EIP 4626?
+
+
+[02/03/2025 14:26] pfapostol
+Most likely it shouldn't be. From README https://github.com/code-423n4/2025-01-liquid-ron?tab=readme-ov-file#eip-compliance-checklist
+
+{Reactions}
+👍 
+
+[02/03/2025 16:15] nem0thefinder
+18
+
+
+[02/04/2025 04:51] 0x46_dustin
+@Owl  check my pt, pls.
+
+
+[02/04/2025 06:34] unique0x0
+why it's divided by 7 why not 5 
+
+```
+
+function test_redeem_vault_function() public {
+        uint256 amount = 100000 ether;
+        liquidRon.deposit{value: amount}();
+        uint256 delegateAmount = amount / 7;                          <<<<<@
+        uint256[] memory amounts = new uint256[](5);
+        for (uint256 i = 0; i < 5; i++) {
+            amounts[i] = delegateAmount;
+        }
+        liquidRon.delegateAmount(0, amounts, consensusAddrs);
+        skip(86400 * 365 + 1);
+        uint256 pre = address(this).balance;
+        uint256 prel = liquidRon.balanceOf(address(this));
+        uint256 assets = liquidRon.redeem(390 ether, address(this), address(this));
+        uint256 post = address(this).balance;
+        uint256 postl = liquidRon.balanceOf(address(this));
+        assertTrue(prel - postl == 390 ether);
+        assertTrue(post - pre == assets);
+    }
+```
+
+
+[02/04/2025 07:30] welith
+if you look at the test asserts, you will see it does not really make any difference, so it's most probably a typo
+
+
+[02/04/2025 07:37] topmark1
+and it might even be on purpose just to ascertain that redeem works even if the entire balance is not delegated
+
+
+[02/04/2025 07:40] unique0x0
+if you change that to 5 the test will fail 
+`ERC20InsufficientBalance `
+
+
+[02/04/2025 07:44] welith
+it will fail cause you will be delegating the whole vault amount in the staking contract, so you will need to do a request for withdrawing
+
+{Reactions}
+❤️ 
+
+[02/04/2025 07:54] 0xmujahid002
+Hello everyone, This is My first Audit. I just want to confirm, C4 provides a good template for submitting findings. By joining Audit & submitting them through the UI sufficient?
+
+{Reactions}
+👍 (3) 
+
+[02/04/2025 08:25] topmark1
+hmm, why is that
+
+
+[02/04/2025 08:32] welith
+well, when you deposit your funds can be delegated to the staking contract, so you won't always be able to do full withdraws, that's why you have the request withdraw option, so that the operator can undelegate funds from the staking contract, in order to pay your request
+
+
+[02/04/2025 08:33] topmark1
+hmm, thanks👍
+
+
+[02/04/2025 09:33] owlofmoistness
+this is the correct reason
+
+{Reactions}
+👍 
+
+[02/04/2025 12:59] aamirusmani1552
+Include line number in your url. Or if there are any characters at the end of line number. Remove it.
+
+
+[02/04/2025 13:02] 0xfocusnode
+Or if you have included more than one line, remove the second
+
+
+[02/04/2025 13:03] godwinudo
+Thank you
+
+I removed the letters that were in front of the line numbers in the permalink
+
+{Reactions}
+👍 
+
+[02/04/2025 13:03] godwinudo
+I don't know if the link will still work though
+
+
+[02/04/2025 13:03] aamirusmani1552
+It should
+
+
+[02/04/2025 13:04] godwinudo
+It did
+
+Thank you very much
+
+{Reactions}
+🤝 
+
+[02/04/2025 14:11] 0xrochimaru
+Best of luck everyone. We are in the endgame now 🔥
+
+{Reactions}
+🤝 (3) 
+
+[02/04/2025 14:30] owlofmoistness
+Super impressed by the diligence of everyone in the private threads! Makes me want to join you in the audit trenches... maybe in the future!!
+Few more hours! I'll try to answer asap, got a few meetings todays though, please bear with me!
+
+{Reactions}
+🔥 (24) 
+
+[02/04/2025 15:40] chonkov
+Can findings be edited/changed after submission?
+
+
+[02/04/2025 15:40] welith
+yes
+
+{Reactions}
+✅ 
+
+[02/04/2025 17:58] kann_p
+guys
+
+
+[02/04/2025 17:58] kann_p
+where can I check
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/image-118DF.png
+
+
+[02/04/2025 17:58] kann_p
+.
+
+
+[02/04/2025 17:59] 0xhuh2005
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/DelegatorStaking.sol#L57
+
+
+[02/04/2025 17:59] kann_p
+thanks
+
+
+[02/04/2025 18:31] pabel0914
+In code4rena, low issue can be rewarded?
+
+
+[02/04/2025 18:34] aamirusmani1552
+yes
+
+
+[02/04/2025 18:44] welith
+only if your QA report gets selected, its the top 3 ones only
+
+
+[02/04/2025 19:58] mosharaf
+Big salute to @Owl  .
+You were an amazing sponsor.
+
+{Reactions}
+❤️ (2) 
+
+[02/04/2025 19:59] unpluggedtj
+Owl is one of the coolest sponsor I interacted with.
+
+
+[02/04/2025 20:00] owlofmoistness
+haha you guys
+
+
+[02/04/2025 20:01] owlofmoistness
+glad I could help, I'm not sure how sponsors should act, what was fun was that sometimes I got to think of your findings the same way I would if I were to try to break something, fun exprience
+
+{Reactions}
+❤️ (10) 
+
+[02/04/2025 20:01] kann_p
+speedrunned contest for 3 hours
+
+
+[02/04/2025 20:01] kann_p
+lets see what I found
+
+
+[02/04/2025 20:01] kann_p
+😵‍💫
+
+
+[02/04/2025 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens - The Liquid Ron audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: the sponsor team and judge will review the findings over the next couple of weeks.
+
+
+[02/04/2025 20:03] pabel0914
+I can't submit third issue!!
+
+
+[02/04/2025 20:04] pabel0914
+I have received I am not authorized
+
+
+[02/04/2025 20:04] pabel0914
+Could anyone tell me the reason?
+
+
+[02/04/2025 20:04] kann_p
+contest ended mr escobar
+
+{Reactions}
+🤣 (3) 
+
+[02/04/2025 20:05] pabel0914
+I received error message before the contest ends
+
+
+[02/04/2025 20:06] unpluggedtj
+Try to raise the issue in #❓・questions , also if you have the API request screen shot with time stamp, would help you make a solid case for the same.
+
+
+[02/04/2025 20:08] kann_p
+not possible I literally submitted the last 20 seconds
+
+
+[02/04/2025 20:08] unpluggedtj
+Waiting for that SR role hero who would tell the number of issue count.
+
+
+[02/04/2025 20:09] pfapostol
+1200+
+
+{Reactions}
+❤️ 
+
+[02/04/2025 20:09] pfapostol
+Which is weird
+
+{Reactions}
+❤️ 
+
+[02/04/2025 20:10] owlofmoistness
+Thank you everyone for participating in my audit!
+In total I've had to deal with over 76 private threads, and potentially more lurking auditors preferring to be left alone
+
+Definitely some stuff that needed to be corrected in my code.
+I've been told it isn't common practice to discuss stuff jsut after competition end so I'll leave it at that
+
+But I really enjoyed the discussions I've had with some of you
+
+make the world safe wardens! 🔒
+
+{Reactions}
+🔥 (26) hi5 (4) 
+
+[02/04/2025 20:10] unpluggedtj
+Whoa! 3 times the nSLOC
+
+
+[02/04/2025 20:11] sakibcy
+do c4 currently accepts block re-org issues?
+
+
+[02/04/2025 20:57] magiccentaur
+Is possible check all the submissions before the official final results?
+
+
+[02/04/2025 21:44] 0xterrah
+good luck to the judges ( :
+
+
+[02/04/2025 22:37] takarez
+a future SR in the making 🫡
+
+
+[02/05/2025 02:30] berndt_
+Indeed
+
+
+[02/05/2025 07:45] daniel526
+1243 submissions is mind blowing for a 386 nSLOC, you guys picked every thing smelling a bug
+
+{Reactions}
+😂 (6) 
+
+[02/05/2025 09:37] alekso1
+How can we follow our own findings to see if they are accepted or not?
+
+
+[02/05/2025 09:43] welith
+Only SR roles can do that, if you don't have it, you will need to wait for the end results
+
+
+[02/05/2025 09:45] elcid2000
+
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/image-EAA47.png
+
+{Reactions}
+😂 (29) 
+
+[02/05/2025 09:47] thehxnz
+If every warden submits 3 submissions, there are around 400~ warden participating lmao
+
+
+[02/05/2025 09:49] pfapostol
+Yes, the counter of findings will be lower. Some bugs were found by almost everyone.
+
+
+[02/05/2025 09:55] alekso1
+oh okay thanks
+
+
+[02/05/2025 10:30] owanemi
+why tho
+seems very restrictive
+
+
+[02/05/2025 10:31] alekso1
+Like that you can't argue on your findings 😅
+
+
+[02/05/2025 10:39] saurabh_0312
+i didnt found a single med or high in this code base
+
+
+[02/05/2025 10:40] 0xrochimaru
+What about incorrect operator check in modifier. You missed that?
+
+
+[02/05/2025 10:40] saurabh_0312
+i should polish my skills more
+
+
+[02/05/2025 10:40] elcid2000
+yes! When the results come out, learn from the bugs you missed
+
+
+[02/05/2025 10:40] saurabh_0312
+where
+
+
+[02/05/2025 10:41] 0xrochimaru
+Don't worry mate. Once the results are out, you can read the report and look out for these bugs in your next audit
+
+{Reactions}
+🔥 (2) 
+
+[02/05/2025 10:42] pfapostol
+Despite the obviousness of this finding, discussion of the findings in public channels is not allowed.
+
+
+[02/05/2025 10:42] saurabh_0312
+what is wrong in that a operator in the mapping can pass and the owner
+
+
+[02/05/2025 10:42] saurabh_0312
+ok ok ok
+
+
+[02/05/2025 10:46] saurabh_0312
+i got it
+
+
+[02/05/2025 10:58] 0xrochimaru
+That only applies to Private audits right. Am I wrong? The findings of this one will be public
+
+
+[02/05/2025 11:09] pfapostol
+yes, will be, but not yet.
+
+
+[02/05/2025 18:52] 0xmsf14
+1 quadrillion duplicates.
+
+{Reactions}
+😂 (8) 
+
+[02/05/2025 19:39] pkabhi
+how do you even check the progress of judging ?
+
+
+[02/05/2025 19:40] pkabhi
+newbie here
+
+
+[02/05/2025 19:44] sentient_stick
+https://tenor.com/fot7mxeio2m.gif
+
+{Embed}
+https://tenor.com/view/you-don't-invincible-omni-man-jk-simmons-that's-the-neat-thing-gif-4390372980992221432
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/you-don%2527t-invincible-318BE.png
+
+{Reactions}
+😂 
+
+[02/06/2025 03:48] mihir1808
+Which issue it is ?
+
+
+[02/06/2025 04:59] dot_cloud
+modifier issue I think
+
+
+[02/06/2025 05:01] mihir1808
+Is there any pre-decided timeline for judging results in C4 like other platforms ?
+
+
+[02/06/2025 13:26] unpluggedtj
+Nope
+
+
+[02/06/2025 13:27] pfapostol
+https://docs.code4rena.com/other-details/our-process
+
+{Embed}
+https://docs.code4rena.com/other-details/our-process
+Audit timeline | Code4rena
+This is a high level overview of the C4 audit timeline.
+
+{Reactions}
+👍🏻 (2) 
+
+[02/08/2025 13:06] mrosas
+Hi can we escalate on other findings?
+
+
+[02/08/2025 13:40] pfapostol
+Yes
+
+
+[02/10/2025 15:58] mahi_vasisth
+Is escalation started guys ?
+
+
+[02/10/2025 17:15] cool_justy
+Not yet
+
+
+[02/10/2025 19:37] harry_cryptodev
+where can i see the judging status?
+
+
+[02/12/2025 13:29] jovemjeune
+As I know, you have to own SR role for viewing judging status or escalate a finding before judging period and PJQA over.
+
+
+[02/13/2025 16:23] sheldonholmgren
+Is escalating something that a new warden can do? Is that something I should learn about?
+
+
+[02/13/2025 19:13] 0x23r0
+wen results?
+
+{Reactions}
+👍 (2) 
+
+[02/14/2025 12:55] thehxnz
+still in the judging phase for about 1200ish reports
+
+{Reactions}
+thisisfine (2) 
+
+[02/14/2025 21:27] ifex445
+wow
+
+
+[02/17/2025 11:50] mihir1808
+C4 should also show judging progress
+
+
+[02/18/2025 22:13] ivanfitro
+why an issue can be judged as insufficient?
+
+
+[02/19/2025 02:32] 0x391
+can anybody teach me how to raise an escalation?
+
+
+[02/19/2025 04:02] mihir1808
+Where can you see the judged status or is it only for SR role ?
+
+
+[02/19/2025 10:22] 0x23r0
+This contest shows  `POST-JUDGING QA` what is this mean ?
+
+
+[02/19/2025 10:22] 0x23r0
+in app
+
+
+[02/19/2025 10:57] mihir1808
+https://docs.code4rena.com/other-details/our-process
+
+{Embed}
+https://docs.code4rena.com/other-details/our-process
+Audit timeline | Code4rena
+This is a high level overview of the C4 audit timeline.
+
+
+[02/19/2025 16:55] pkabhi
+so maybe in a day or two we can expect the results ?
+
+
+[02/19/2025 22:21] thehxnz
+to put it optimistically, yes. But usually judges take more than that
+
+
+[02/20/2025 19:00] 0x23r0
+https://tenor.com/view/wen-the-sol-den-the-sol-den-wen-solana-wen-taiyo-wen-gif-9713405015565385747
+
+{Embed}
+https://tenor.com/view/wen-the-sol-den-the-sol-den-wen-solana-wen-taiyo-wen-gif-9713405015565385747
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/wen-the-sol-den-18B22.png
+
+{Reactions}
+😂 (4) 
+
+[02/20/2025 19:30] ifex445
+this saturday 😁
+
+
+[02/21/2025 00:52] owlofmoistness
+https://tenor.com/view/popcat-wen-gif-23885304
+
+{Embed}
+https://tenor.com/view/popcat-wen-gif-23885304
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/popcat-wen-0C105.png
+
+{Reactions}
+😂 (9) 
+
+[02/21/2025 09:26] victorokpukpan_
+Does this mean soon? 😂
+
+
+[02/21/2025 10:16] mihir1808
+You are sponsor you should be knowing wen its coming 😂
+
+
+[02/21/2025 10:45] pfapostol
+This could happen soon, because despite the number of submissions, the number of actual findings is ridiculously small.
+
+
+[02/21/2025 11:11] ifex445
+wow
+
+
+[02/21/2025 11:19] mihir1808
+How much ?
+
+
+[02/21/2025 11:57] mihir1808
+https://tenor.com/view/ali-nosey-va-gif-22974636
+
+{Embed}
+https://tenor.com/view/ali-nosey-va-gif-22974636
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/ali-nosey-9496D.png
+
+{Reactions}
+😂 
+
+[02/21/2025 13:43] 0x23r0
+I think the sponsors are also waiting for their own rewards :chefskiss: :chefskiss: :chefskiss: :chefskiss: :chefskiss: :4739_Skeletor:😂
+
+
+[02/21/2025 14:30] harry_cryptodev
+https://tenor.com/d0Dv6Ow7DfT.gif
+
+{Embed}
+https://tenor.com/view/mr-bean-mrbean-bean-mr-bean-holiday-mr-bean-holiday-movie-gif-3228235746377647455
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/mr-bean-mrbean-9624D.png
+
+
+[02/21/2025 19:40] harry_cryptodev
+oh it's changed to judging again
+
+
+[02/21/2025 19:44] liveactionllamac4
+The judge is currently reviewing post-judging QA feedback.
+
+
+[02/21/2025 19:44] pfapostol
+It is normal, The judge must review escalations
+
+{Reactions}
+💯 (2) hi5 
+
+[02/21/2025 19:58] 0x23r0
+how much time for this phase?
+
+
+[02/21/2025 19:58] pfapostol
+as much as needed, but for this contest, probably not that much
+
+{Reactions}
+👍🏻 
+
+[02/21/2025 19:59] 0x23r0
+how many issues h/m escalated?
+
+
+[02/21/2025 20:00] pfapostol
+very few
+
+
+[02/21/2025 20:01] 0x23r0
+ok
+
+
+[02/21/2025 20:04] rudhra_52418
+When can we expect results
+
+
+[02/21/2025 20:04] pfapostol
+I thought you were asking about valid findings, if we talk about escalations, there are many of them, but most of them are not very viable.
+
+{Reactions}
+😀 👍🏻 
+
+[02/22/2025 08:45] mihir1808
+Any ETA ?
+
+
+[02/22/2025 09:02] pkabhi
+how do you know that your submission is invaid ? for someone to escalate we need to know it is valid or invalid right
+
+
+[02/22/2025 09:19] 0x23r0
+I didn't know only ask how much issues are escalated because every escalation to resolved take times
+
+{Reactions}
+✅ 
+
+[02/22/2025 18:17] sakibcy
+Today?
+
+
+[02/23/2025 21:55] ivanfitro
+if i scalate a issue the judge will answer it?
+
+
+[02/24/2025 01:01] thehxnz
+I got no comment or any notifications, am I cooked?
+
+{Reactions}
+😂 (5) 
+
+[02/24/2025 05:41] mihir1808
+Any updates on wen results ?
+
+
+[02/24/2025 09:21] ivanfitro
+Same
+
+
+[02/24/2025 09:23] thehxnz
+we are cooked
+
+
+[02/24/2025 09:23] thehxnz
+the judges are cooking
+
+
+[02/24/2025 09:23] thehxnz
+but wen results
+
+
+[02/24/2025 09:40] thehxnz
+Actually, I wanna see things that I have missed in this audit. But it's not going to happen if it's not concluded yet :(
+
+
+[02/24/2025 09:47] victorokpukpan_
+How do you know which of your findings were invalid????
+
+
+[02/24/2025 09:48] thehxnz
+Chill man, only people with the SR role has the hints
+
+
+[02/24/2025 10:01] victorokpukpan_
+Okay, I just saw myself on the leaderboard and was confused. I have found the contest that put me there.
+
+{Reactions}
+😂 (2) 
+
+[02/24/2025 11:56] _bzee.
+Hmm
+
+
+[02/24/2025 15:19] harry_cryptodev
+its now Post-judging QA.
+how can i see my status?
+
+
+[02/24/2025 15:25] chalabiu
+if you are not an SR you cannot see the results until the end
+
+
+[02/24/2025 15:55] mihir1808
+Hopefully the results will be out this week
+
+
+[02/24/2025 16:25] pkabhi
+when does one becomes SR ?
+
+
+[02/24/2025 17:01] liveactionllamac4
+Likely this week. 🤞
+
+{Reactions}
+🔥 (5) 
+
+[02/24/2025 17:02] liveactionllamac4
+You might find this recent announcement helpful in learning more about the SR role. \:)
+https://discord.com/channels/810916927919620096/810929015509483554/1336997410118959137
+
+
+[02/24/2025 20:41] rudhra_52418
+again status changed to post-judging QA what did this indicates ?
+
+
+[02/24/2025 20:45] pfapostol
+The judge looked at the escalations, something was looking valid, but he didn't have enough information or something like that so they gave extra time to the PJQA. So that the wardens could provide additional information or answer questions.
+
+
+[02/24/2025 20:47] rudhra_52418
+this phase continues for 1 day ?
+
+{Reactions}
+✅ 
+
+[02/25/2025 17:06] owlofmoistness
+Hello dear wardens!
+I’m at eth Denver! If you want to come and say hi or trash talk my code, you’re more than happy to :pepelove:
+
+{Reactions}
+👍 (8) 🐸 (2) 👋 (2) 😂 (4) 
+
+[02/26/2025 00:47] thehxnz
+The contest status changed to awarding, lfg 🚀
+
+{Reactions}
+👀 
+
+[02/26/2025 01:17] liveactionllamac4
+🤑 🎉  Awards for **Liquid Ron**:
+
+$4,490.59 USDC » @Sukuna
+$3,583.08 USDC » @gesha17
+$3,583.08 USDC » @0rpse
+$3,583.08 USDC » @ilchovski
+$3,583.08 USDC » @0x0dd
+$3,025.08 USDC » @Spurious Dragon
+$3,025.07 USDC » @0xrex
+$3,025.05 USDC » @KupiaSec
+$568.45 USDC » @Hunterr
+$378.95 USDC » @...
+$252.63 USDC » @Bigsam
+$0.04 USDC » @0x04bytes
+$0.03 USDC » @oakcobalt
+$0.03 USDC » @sl1
+$0.03 USDC » @0xshivay
+$0.03 USDC » @JCN
+$0.03 USDC » @Breeje
+$0.03 USDC » @zraxx
+$0.03 USDC » @0xG0P1
+$0.03 USDC » @csanuragjain
+$0.03 USDC » @t0x1c
+$0.03 USDC » @Zeta
+$0.03 USDC » @ElCid
+$0.03 USDC » @silver_eth
+$0.03 USDC » @y4y
+$0.03 USDC » @Bauchibred
+$0.03 USDC » @evta
+$0.03 USDC » @emerald7017
+$0.03 USDC » @Pabel
+$0.03 USDC » @santiellena
+$0.03 USDC » @oxait
+$0.03 USDC » @Harry-cryptodev
+$0.03 USDC » @Darinrikusham
+$0.03 USDC » @Godwin
+$0.03 USDC » 056Security ( @0xb0k0 and @stanchev )
+$0.03 USDC » @bigbear1229
+$0.03 USDC » @Holmgren
+$0.03 USDC » @DoD4uFN
+$0.03 USDC » @YouCrossTheLineAlfie
+$0.03 USDC » @rudhra
+$0.03 USDC » @0x23r0
+$0.03 USDC » @DemoreX
+$0.03 USDC » @aldarion
+$0.03 USDC » EPSec ( @0x539.eth | ChainDefenders and @petarP1998 )
+$0.03 USDC » @nnez
+$0.03 USDC » 0xAlix2 ( @a_kalout and @ali_shehab )
+$0.03 USDC » @Ryonen
+$0.03 USDC » @serial-coder
+$0.03 USDC » @klau5
+$0.03 USDC » @BlackAdam
+$0.03 USDC » @Raj
+$0.03 USDC » @yusufroqib
+$0.03 USDC » @Future2xy
+$0.03 USDC » @Victor
+$0.03 USDC » @bshyuunn
+$0.02 USDC » @Attention
+$0.02 USDC » @0xzen
+$0.02 USDC » @ccvascocc
+$0.02 USDC » @Tadev
+$0.02 USDC » @_hrmneffdi
+$0.02 USDC » @0xAlexSR
+$0.02 USDC » @wellbyt3
+$0.02 USDC » @Adotsam
+$0.02 USDC » @arman
+$0.02 USDC » @Aariiif
+$0.02 USDC » @air_0x
+$0.02 USDC » @0xDemon
+$0.02 USDC » @Fitro
+$0.02 USDC » @Josh4324
+$0.02 USDC » @grearlake
+$0.02 USDC » @Victor_TheOracle (🐼)
+$0.02 USDC » @sutter
+$0.02 USDC » @peanuts
+$0.02 USDC » @Shahil Hussain
+$0.02 USDC » @jsonDoge
+$0.02 USDC » @0xStuart
+
+🏁 Findings summary
+--------------------------------------—
+1 High risk findings
+2 Med risk findings
+533 wardens participated
+
+Top Hunter: n/a
+Top Gatherers: Aamir, gesha17, 0rpse, ilchovski, and 0x0dd
+Top QA report: IlIlHunterlIlI 
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+⚠️ Awardees, be sure to [complete your tax reporting info](https://docs.code4rena.com/awarding/incentive-model-and-awards/awarding-process#tax-information-for-code4rena-contributors-wardens-judges-etc) if you haven't already. This must be completed within 30 days (i.e. before Friday, 28 March 2025) to receive your award distribution for this audit.
+
+The leaderboard will be updated with these audit results in the coming days.
+
+{Reactions}
+🔥 (3) 
+
+[02/26/2025 01:17] liveactionllamac4
+ℹ️ *Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings are made public to check on your submissions. Keep in mind that this audit contained a High with >70 duplicates and a Medium with >200 duplicates, so awards for those findings will be very low or $0. While we don't list $0 awards in our discord announcements, findings judged as valid do still count toward your signal score as they normally would.*
+
+
+[02/26/2025 02:03] harry_cryptodev
+https://tenor.com/bCgD8.gif
+
+{Embed}
+https://tenor.com/view/shy-adam-levine-gif-21474442
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/shy-adam-39740.png
+
+
+[02/26/2025 02:03] harry_cryptodev
+$0.03 
+lol
+
+
+[02/26/2025 04:46] 0x391
+yeah, at least you earned more than me. 😂
+
+
+[02/26/2025 06:28] 0xrochimaru
+Congrats everyone. I'll go cry in the corner now
+
+
+[02/26/2025 07:02] victorokpukpan_
+Yo, what? 😂
+
+{Reactions}
+😂 (6) 
+
+[02/26/2025 10:44] dot_cloud
+congrats everyone 🔥  (except me)
+
+{Reactions}
+😂 (4) 
+
+[02/26/2025 11:11] _bzee.
+lol
+
+
+[02/26/2025 11:15] 0xrochimaru
++1
+
+
+[02/26/2025 12:01] mihir1808
+In C4 we can't see reasoning why our submitted issue was judged for particular severity right if you don't have SR role ?
+
+{Reactions}
+👍 
+
+[02/26/2025 12:21] thebrittfactor
+Correct, you'll need to wait until the report is published.
+
+{Reactions}
+👍🏻 
+
+[02/26/2025 13:35] unpluggedtj
+My second 0.03$ on c4 simultaneously 😋
+
+{Reactions}
+🪙 (3) 
+
+[02/26/2025 16:24] the0x0dd
+hi, where can I find some info about the migration audit process? Will non-SR be able to participate?
+
+
+[02/26/2025 17:00] cloudellie
+Mitigation reviews require the SR role, because the participating wardens need to be able to view all of the findings from the audit.
+
+
+[02/26/2025 20:04] yusufroqib
+Oh wow 😀
+
+
+[02/26/2025 20:20] halalauditor
+Where do we find the full result
+
+
+[02/27/2025 05:34] pcprodigy
+Is the broken Access Control in `onlyOperator invalid?
+
+
+[02/27/2025 05:35] pcprodigy
+https://github.com/code-423n4/2025-01-liquid-ron/blob/e4b0b7c256bb2fe73b4a9c945415c3dcc935b61d/src/LiquidRon.sol#L91
+
+{Embed}
+https://github.com/code-423n4/2025-01-liquid-ron/blob/e4b0b7c256bb2fe73b4a9c945415c3dcc935b61d/src/LiquidRon.sol
+2025-01-liquid-ron/src/LiquidRon.sol at e4b0b7c256bb2fe73b4a9c94541...
+Contribute to code-423n4/2025-01-liquid-ron development by creating an account on GitHub.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/762527af-f528-46bf-bb9a-8858b8150b57-448E8
+
+
+[02/27/2025 05:39] pcprodigy
+Was it considered low and i submitted as high
+
+
+[02/27/2025 05:57] brandio
+it's valid i believe, but there are 200 dups of it
+
+
+[02/27/2025 07:54] vladi319
+
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/image-A607E.png
+
+{Reactions}
+thankyou (2) 
+
+[02/27/2025 20:15] teoslaf1
+The report it’s out
+
+
+[02/28/2025 01:15] victorokpukpan_
+Kudos to those that could spot the other medium severity issue. Looking forward to seeing what that was.
+
+
+[02/28/2025 02:07] thehxnz
+I'm also curious
+
+
+[02/28/2025 04:45] mihir1808
+Why I can't see reports of all issues yet ?
+
+
+[02/28/2025 07:27] jkk812812
+I would like to ask if it's possible to transfer the underlying assets to LiquidRon before its deployment, or if it can be done after the deployment of LiquidRon but before making a deposit (e.g., 10,000 ether) into it?
+
+
+[02/28/2025 07:28] jkk812812
+:thisisfine:
+
+
+[02/28/2025 08:15] tinnohofficial
+Hello, I can't see myself in the results page is this an issue?, @CloudEllie @thebrittfactor | C4 
+I did submit the 2 mediums found (atleast I should have seen my $0.01 or $0.00) 🤔
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/image-8C228.png
+
+
+[02/28/2025 08:32] alekso1
+maybe your findings are unsatisfactory
+
+
+[02/28/2025 08:32] alekso1
+you need to wait report to be out to see, anyway without SR role you can't do anything yet
+
+{Reactions}
+👆 ➕ 
+
+[02/28/2025 08:34] tinnohofficial
+so the results page does not show all people who submitted the vulns but only a subset of them?
+
+
+[02/28/2025 08:34] alekso1
+it shows all people who submitted valid vulns
+
+
+[02/28/2025 08:36] tinnohofficial
+am pretty sure the vulns i submitted are valid but I guess i have to wait.
+
+
+[02/28/2025 08:36] alekso1
+You would be in the results page if it was valid. Maybe your vulns are valid but your report is too low quality to be accepted. Yep have to wait anyway you won't be able to escalate without SR role
+
+
+[02/28/2025 08:37] tinnohofficial
+something similar once happened in TraitForge when i was starting out to audit, I submitted a valid Low, it was part of the report but I never saw my handle in the report or the past findings tab 🤔
+
+
+[02/28/2025 08:38] pfapostol
+no
+
+
+[02/28/2025 08:39] tinnohofficial
+so how do they invalidate the findings, do they leave a comment or sth or they just leave your reports in silence 😅
+
+
+[02/28/2025 08:43] pfapostol
+I believe there will be an open repo in github with all the reports, after contest finalized, maybe not, there is a lot of changes currently in Code4rena. 
+Check if you have access to the dashboard panel in the upper right corner of the contest page. If not, write me a DM, I will send the comments from your findings.
+
+
+[02/28/2025 08:44] tinnohofficial
+ok let me do that. thenx mate 🫡
+
+
+[02/28/2025 09:07] jkk812812
+help
+
+
+[02/28/2025 09:41] thehxnz
+no public discussion on any submission
+
+
+[02/28/2025 09:45] jkk812812
+oh,sorry
+
+
+[02/28/2025 10:31] halalauditor
+So that means if i haven't seen my handle my reports are invalidated?
+
+{Reactions}
+👍 
+
+[02/28/2025 10:31] halalauditor
+I gave it my all but walk away with nothing???😪
+
+
+[03/01/2025 00:23] josh4324
+There is a problem with the leaderboard.....I already confirmed i have 1 high and 1 medium finding, and there is only 1 high finding, how come i getting paid less than people who have just 1 high finding(not like it matters), and i am placed below them on the leaderboard. @CloudEllie
+
+
+[03/01/2025 05:54] pfapostol
+https://docs.code4rena.com/awarding/incentive-model-and-awards
+TLDR:
+There is a share calculation system and you get more if you find more unique findings, there is also a bonus, 10% of the total pot for the ones who finds the most amount of valid findings, and 10% for the ones who finds the most unique amount of findings.
+
+In this particular contest it looks like you would have to find all 1H and 2M to get a decent reward amount as they all have a lot of duplicates.
+There is also a chance that you only receive part of the reward if the quality of the report is poor.
+
+
+[03/03/2025 04:54] thehxnz
+any eta on full report?
+
+
+[03/03/2025 13:06] cli7max
+Where can I find the report ?
+
+
+[03/03/2025 13:07] cloudellie
+Hello - one of your valid submissions was assigned 75% credit, and grouped with 72 duplicates. The other was part of a duplicate set that included 207 submissions in total. More on partial credit [here](https://docs.code4rena.com/awarding/incentive-model-and-awards#duplicates-getting-partial-credit).
+
+{Embed}
+https://docs.code4rena.com/awarding/incentive-model-and-awards
+Incentive model and awards | Code4rena
+
+
+[03/03/2025 13:08] cloudellie
+Report timeline is variable (sponsors sometimes need extra time to complete all mitigations and approve the report), but we do announce them when they're available.
+
+
+[03/03/2025 13:38] josh4324
+Thanks @CloudEllie when will our signal be updated based on this audit
+
+
+[03/03/2025 13:39] cloudellie
+Should be later today.
+
+{Reactions}
+👍 ❤️ 
+
+[03/03/2025 16:10] halalauditor
+Report??
+
+
+[03/04/2025 16:20] liveactionllamac4
+https://discord.com/channels/810916927919620096/1332472159926489149/1346106942547955762
+
+{Reactions}
+😆 
+
+[03/06/2025 15:48] mihir1808
+Signal not yet updated right ?
+
+
+[03/06/2025 15:50] cloudellie
+We update signal daily, so this audit's results should be reflected in your signal by now
+
+
+[03/06/2025 15:51] mihir1808
+I still see 0 in my settings does that mean I wouldn't have earned it from this contest ?
+
+
+[03/06/2025 15:54] cloudellie
+It might just mean that you haven't competed in 3 audits that have judging results posted. [The documentation is here](https://docs.code4rena.com/roles/wardens/signal) if you want to check how signal is calculated.
+
+{Embed}
+https://docs.code4rena.com/roles/wardens/signal
+Signal metrics | Code4rena
+Signal is Code4rena's accuracy metric for wardens and teams.
+
+
+[03/06/2025 15:56] mihir1808
+Got it, thanks
+
+{Reactions}
+hi5 
+
+[03/08/2025 18:15] aamirusmani1552
+@CloudEllie wen can we expect the payment for this?
+
+
+[03/09/2025 20:19] aamirusmani1552
+nvm received
+
+{Reactions}
+hi5 
+
+[03/14/2025 20:13] itsmetechjay
+~~ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted in 03/21/2025 22:00. Please make sure to grab anything you might need before then.~~
+
+
+[03/19/2025 03:05] bshyuunn
+Hello!
+Where can I find out how my report was evaluated?
+
+
+[03/19/2025 07:21] alekso1
+I think nowhere without SR role...
+
+{Reactions}
+😭 
+
+[03/19/2025 07:30] bshyuunn
+Thanks for info 🙏
+
+{Reactions}
+🫡 
+
+[03/19/2025 15:21] riceee8969
+Hi guys I had shadow audited this codebase after the contest just for practice,  and just a heads up I think there might be a bug with the `pruneValidatorList` function where the parameters of `IRoninValidator.getReward`  external call made might be reversed. I didn’t see this mentioned in the report, so I thought I’d flag it in case it’s actually a bug. It’s been a while since I last reviewed the codebase tho, was just comparing my findings with the report and think there might be a typo in the parameters(?)
+
+
+[03/19/2025 15:36] attentioniayn
+Made me curious so I checked, but it seems to just be a harmless typo in the interface (aka they called user what is actually the validator).
+If you check the validator contract it should be correct: https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/RewardCalculation.sol#L30
+
+Great catch though 🥳
+
+{Embed}
+https://github.com/ronin-chain/dpos-contract/blob/348e2e364fb9d63faa116dd61ea71a1161578fd7/contracts/ronin/staking/RewardCalculation.sol
+dpos-contract/contracts/ronin/staking/RewardCalculation.sol at 348e...
+Contribute to ronin-chain/dpos-contract development by creating an account on GitHub.
+
+
+[03/19/2025 15:38] riceee8969
+Ahhhh i see, tysm! Should have checked the actual contract too haha
+
+{Reactions}
+❤️ 
+
+[03/19/2025 15:45] cloudellie
+Just to err on the side of caution: in future, it's best to post these kinds of notes in a private thread with the sponsors, rather than in a public channel.
+
+{Reactions}
+🫡 
+
+[03/19/2025 15:59] riceee8969
+Noted. Thank you for the heads up!
+
+{Reactions}
+hi5 
+
+[03/19/2025 17:52] 0x23r0
+Now that the report is public, where can I see why my other reports are invalid?
+
+
+[03/19/2025 20:07] mosharaf
+@CloudEllie Will submission repo be public for this contest ?
+
+
+[03/19/2025 21:35] cloudellie
+@0x23r0 @0xMosh we will be sharing this within the next couple of days - apologies for the wait.
+
+{Reactions}
+👍🏻 (2) 
+
+[03/20/2025 11:47] no.one7777
+`Incorrect Logic in onlyOperator Modifier Leading to Denial-of-Service for Authorized Operators Across Critical Functions`
+ which issue is this the mine is dup of this but dont have an reward?
+
+
+[03/20/2025 11:52] daniel526
+possibly the issue had lots of duplicates hence rewards in cents, i also didn't
+
+{Reactions}
+👍 
+
+[03/28/2025 20:12] 0xgondarxyz
+@CloudEllie  Hi, upon reading the report now, I see something distressing. It seems that I submitted a valid  bug that's in the report, but my name is not there, I didn't get any reward nor points. I'm talking about this bug => https://code4rena.com/reports/2025-01-liquid-ron#m-02-operators-are-unable-to-perform-any-actions-due-to-incorrect-modifier-implementation
+
+I'm looking at my submitted findings, and I saw and submitted this bug. Could you please look into this, what went wrong? For more info: I did submit is as high, and it is considered a medium in the report. Does c4 directly invalidate bugs in this manner?
+
+{Embed}
+https://code4rena.com/reports/2025-01-liquid-ron
+Code4rena
+Code4rena is a competitive audit platform that finds more high-severity vulnerabilities, more quickly than any other auditing method.
+Code4rena - ARCHIVE-PUBLIC - liquid-ron-jan [1332472159926489149].txt_Files/c4-og-v2-64B78.png
+
+{Reactions}
+🧵 
+
+[03/29/2025 08:36] beejay0024
+@CloudEllie  I  also  hav similar issue. there was a typo on my mitigation.  Is mitigations now a criteria for validity?
+
+
+[03/29/2025 08:48] cloudellie
+@0xGondar @Beejay From what I understand, we'll be opening up  submissions next week, which should provide you with visibility on the validator, judge, and sponsor evaluations.
+
+
+[03/29/2025 12:25] 0xgondarxyz
+Thanks, looking forward to it
+
+{Reactions}
+hi5 
+
+[03/31/2025 14:13] beejay0024
+tnx
+
+{Reactions}
+hi5 
+
+[04/11/2025 21:04] 0xmujahid002
+
+
+
+[06/03/2025 20:10] C4
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted 06/11/2025 21:13. Please make sure to grab anything you might need before then.
+
+
+==============================================================
+Exported 347 message(s)
+==============================================================
