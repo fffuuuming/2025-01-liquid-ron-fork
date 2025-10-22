@@ -140,3 +140,4 @@ runs:
       working-directory: ../bastet-cicd
       run: |
         docker-compose -f docker-compose.cicd.yml down -v --remove-orphans || true
+        
